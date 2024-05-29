@@ -1,4 +1,4 @@
-# EmbeddingsProject
+# EmbedSearch Project
 
 Este proyecto es una demostración de cómo extraer texto de archivos, generar embeddings usando Co:here, y realizar búsquedas semánticas usando un índice FAISS.
 
