@@ -14,7 +14,7 @@ def main():
     Punto de entrada principal para el programa.
     """
     # Consulta a realizar
-    query = "How COVID affects this plan?"
+    query = input("Please enter your query: (E.g.: How COVID affects this plan?): ")
 
     # Ruta del directorio que contiene los archivos a procesar
     files_path = 'data/sample'
