@@ -38,12 +38,11 @@ El proyecto permite a los usuarios cargar archivos (PDF, DOCX, TXT), extraer su 
     ```sh
     python main.py
     ```
-3. El resultado de la búsqueda se mostrará en la consola.
-4. El programa te pedirá que ingreses tu consulta:
+3. El programa te pedirá que ingreses tu consulta:
    ```sh
     Please enter your query: (E.g.: How COVID affects this plan?):  
     ```
-5. Los resultados se mostrarán en la consola.
+4. Los resultados se mostrarán en la consola.
 
 ## Autor
 
