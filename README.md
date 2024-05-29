@@ -4,7 +4,7 @@ Este proyecto es una demostración de cómo extraer texto de archivos, generar e
 
 ## Descripción
 
-El proyecto permite a los usuarios cargar archivos (PDF, DOCX, TXT), extraer su contenido, generar embeddings para cada párrafo utilizando la API de Co:here y buscar consultas semánticas dentro del contenido utilizando FAISS.
+El proyecto permite a los usuarios cargar archivos (PDF, DOCX, TXT), extraer su contenido, generar embeddings para cada párrafo utilizando la API de Co:here y relizar consultas semánticas dentro del contenido utilizando FAISS.
 
 ## Instalación
 
