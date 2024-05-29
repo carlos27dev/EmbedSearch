@@ -1,0 +1,11 @@
+# Archivos de configuración del IDE
+.idea/
+*.iml
+
+# Archivos de entorno
+.env
+
+# Archivos y carpetas de sistema
+__pycache__/
+*.pyc
+.DS_Store
