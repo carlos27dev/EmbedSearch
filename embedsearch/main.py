@@ -26,21 +26,31 @@ def main():
     k = 5
 
     # Check if the files directory exists
+    print("Checking documents directory exists.")
     FileUtils.check_files_path(files_path)
+    print("\nDocuments directory found.")
 
     # Process the files and extract text
+    print("\nExtracting text...")
     paragraphs = FileUtils.process_files(files_path)
+    print("\nText extracted.")
 
     # Create an instance of the embedding generator with the API key
+    print("\nGenerating an Embedder Engine...")
     generator = EmbeddingGenerator(api_key)
+    print("\nEmbedder generated.")
 
     # Generate and save the embeddings in a FAISS index
+    print("\nGenerating and saving embeddings...")
     faiss_index = FileUtils.generate_and_save_embeddings(generator, paragraphs, faiss_index_path)
+    print("\nEmbeddings saved succesfully to FAISS index.")
 
     print(f"\nFAISS index saved to {faiss_index_path}")
 
     # Perform the search query on the FAISS index
+    print("\nSearching your query...")
     results = FileUtils.search_query(query, generator, faiss_index, paragraphs, k)
+    print("\nSearch completed.")
 
     # Format the search results into a pandas DataFrame
     results_df = pd.DataFrame(results, columns=['Paragraph', 'Distance'])
