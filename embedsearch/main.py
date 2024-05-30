@@ -36,7 +36,7 @@ def main():
     print("\nText extracted.")
 
     # Create an instance of the embedding generator with the API key
-    print("\nGenerating an Embedder Engine...")
+    print("\nGenerating an Embedding Engine...")
     generator = EmbeddingGenerator(api_key)
     print("\nEmbedder generated.")
 
