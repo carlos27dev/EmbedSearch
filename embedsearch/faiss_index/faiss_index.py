@@ -4,24 +4,24 @@ import numpy as np
 
 class FaissIndex:
     """
-    Clase para gestionar un índice FAISS.
+    Class to manage a FAISS index.
     """
     def __init__(self, dimension):
         """
-        Constructor de FaissIndex, que recibe la dimensión de los embeddings.
+        Constructor for FaissIndex class, which takes the dimension of the embeddings.
 
-        :param dimension: Dimensión de los embeddings.
+        :param dimension: Dimension of the embeddings.
         """
         self.dimension = dimension
 
-        # El tipo IndexFlatL2 realiza búsquedas basadas en la métrica de distancia L2 (euclidiana).
+        # The IndexFlatL2 type performs searches based on the L2 (Euclidean) distance metric.
         self.index = faiss.IndexFlatL2(dimension)
 
     def save_index(self, file_path):
         """
-        Guarda el índice en un archivo.
+        Saves the index to a file.
 
-        :param file_path: Ruta del archivo donde guardar el índice.
+        :param file_path: Path to the file where the index will be saved.
         """
         try:
             faiss.write_index(self.index, file_path)
@@ -31,9 +31,9 @@ class FaissIndex:
 
     def add_embeddings(self, embeddings):
         """
-        Añade embeddings al índice.
+        Adds embeddings to the index.
 
-        :param embeddings: Lista de embeddings a añadir al índice.
+        :param embeddings: List of embeddings to add to the index.
         """
         try:
             embeddings = np.array(embeddings).astype('float32')
@@ -44,11 +44,11 @@ class FaissIndex:
 
     def search(self, query_embeddings, k=5):
         """
-        Realiza una búsqueda en el índice.
+        Performs a search on the index.
 
-        :param query_embeddings: Embeddings de consulta.
-        :param k: Número de vecinos más cercanos a devolver.
-        :return: Distancias e índices de los vecinos más cercanos.
+        :param query_embeddings: Query embeddings.
+        :param k: Number of nearest neighbors to return.
+        :return: Distances and indices of the nearest neighbors.
         """
         try:
             query_embeddings = np.array(query_embeddings).astype('float32')

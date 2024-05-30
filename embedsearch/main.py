@@ -4,48 +4,48 @@ from dotenv import load_dotenv
 from embedsearch.embeddings.embedding_generator import EmbeddingGenerator
 from embedsearch.utils.utils import FileUtils
 
-# Cargar las variables de entorno desde el archivo .env
+# Load environment variables from the .env file
 load_dotenv()
 api_key = os.getenv('COHERE_API_KEY')
 
 
 def main():
     """
-    Punto de entrada principal para el programa.
+    Main entry point for the program.
     """
-    # Consulta a realizar
+    # Query to perform
     query = input("Please enter your query: (E.g.: How COVID affects this plan?): ")
 
-    # Ruta del directorio que contiene los archivos a procesar
+    # Directory path containing the files to be processed
     files_path = 'data/sample'
 
-    # Ruta donde se guardará el índice FAISS (Base de datos vectorial)
+    # Path where the FAISS index (vector database) will be saved
     faiss_index_path = 'results/faiss_index.bin'
 
-    # Número de resultados a mostrar. (Es el número de vecinos más cercanos que se buscarán)
+    # Number of results to display (number of nearest neighbors to search for)
     k = 5
 
-    # Verificar que el directorio de archivos existe
+    # Check if the files directory exists
     FileUtils.check_files_path(files_path)
 
-    # Procesar los archivos y extraer texto
+    # Process the files and extract text
     paragraphs = FileUtils.process_files(files_path)
 
-    # Crear instancia del generador de embeddings con la API key
+    # Create an instance of the embedding generator with the API key
     generator = EmbeddingGenerator(api_key)
 
-    # Generar y guardar los embeddings en un índice FAISS
+    # Generate and save the embeddings in a FAISS index
     faiss_index = FileUtils.generate_and_save_embeddings(generator, paragraphs, faiss_index_path)
 
     print(f"\nFAISS index saved to {faiss_index_path}")
 
-    # Realizar la búsqueda de la consulta en el índice FAISS
+    # Perform the search query on the FAISS index
     results = FileUtils.search_query(query, generator, faiss_index, paragraphs, k)
 
-    # Formatear los resultados de la búsqueda en un DataFrame de pandas
+    # Format the search results into a pandas DataFrame
     results_df = pd.DataFrame(results, columns=['Paragraph', 'Distance'])
 
-    # Mostrar los resultados de la búsqueda
+    # Display the search results
     print("\nSearch results:")
     print(f"Query:'{query}'\nNearest neighbors:")
     print(results_df)

@@ -4,28 +4,28 @@ from .text_extractor import PDFTextExtractor, DOCXTextExtractor, TXTTextExtracto
 
 class TextExtractorFactory:
     """
-    Fábrica para crear instancias de extractores de texto basados en la extensión del archivo.
+    Factory to create instances of text extractors based on the file extension.
     """
     _registry = {}
 
     @classmethod
     def register_extractor(cls, extension, extractor_cls):
         """
-        Método que registra una clase de extractor para una extensión de archivo específica.
+        Method to register an extractor class for a specific file extension.
 
-        :param extension: Extensión del archivo (p. ej.: '.pdf', '.docx').
-        :param extractor_cls: Clase del extractor correspondiente.
+        :param extension: File extension (e.g., '.pdf', '.docx').
+        :param extractor_cls: Corresponding extractor class.
         """
         cls._registry[extension] = extractor_cls
 
     @classmethod
     def get_extractor(cls, file_path):
         """
-        Método que devuelve una instancia del extractor adecuado basado en la extensión del archivo.
+        Method to return an instance of the appropriate extractor based on the file extension.
 
-        :param file_path: Ruta del archivo para el cual se requiere el extractor.
-        :return: Instancia de la clase de extractor correspondiente.
-        :raises ValueError: Si no hay extractor registrado para la extensión del archivo.
+        :param file_path: Path to the file for which the extractor is required.
+        :return: Instance of the corresponding extractor class.
+        :raises ValueError: If no extractor is registered for the file extension.
         """
         extension = os.path.splitext(file_path)[1]
         extractor_cls = cls._registry.get(extension)
@@ -34,7 +34,7 @@ class TextExtractorFactory:
         return extractor_cls()
 
 
-# Se registran los extractores para las extensiones que se requieren hasta ahora.
+# Register extractors for the required file extensions.
 TextExtractorFactory.register_extractor('.pdf', PDFTextExtractor)
 TextExtractorFactory.register_extractor('.docx', DOCXTextExtractor)
 TextExtractorFactory.register_extractor('.txt', TXTTextExtractor)

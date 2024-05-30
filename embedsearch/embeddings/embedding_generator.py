@@ -3,23 +3,23 @@ import cohere
 
 class EmbeddingGenerator:
     """
-    Clase para generar embeddings utilizando la API de Cohere.
+    Class to generate embeddings using the Co:here API.
     """
     def __init__(self, api_key):
         """
-        Constructor de la clase EmbeddingGenerator, que recibe alguna clave de API de Cohere.
+        Constructor for the EmbeddingGenerator class, which takes a Co:here API key .
 
-        :param api_key: Clave de API para autenticar las solicitudes a Cohere.
+        :param api_key: API key to authenticate requests to Co:here.
         """
         self.client = cohere.Client(api_key)
 
     def generate_embeddings(self, texts):
         """
-        Método que genera embeddings para una lista de textos utilizando la API de Cohere.
+        Method to generate embeddings for a list of texts using the Co:here API.
 
-        :param texts: Lista de textos para los cuales generar embeddings.
-        :return: Lista de embeddings generados.
-        :raises Exception: Si hay un error al llamar a la API de Cohere.
+        :param texts: List of texts for which to generate embeddings.
+        :return: List of generated embeddings.
+        :raises Exception: If there is an error calling the Co:here API.
         """
         try:
             response = self.client.embed(

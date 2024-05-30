@@ -5,25 +5,24 @@ from docx import Document
 
 class TextExtractor(ABC):
     """
-    Clase base abstracta para la extracción de texto de archivos.
+    Abstract base class for extracting text from files.
     """
     @abstractmethod
     def extract_text_impl(self, file_path):
         """
-        Método abstracto para extraer texto de un archivo dado.
+        Abstract method to extract text from a given file.
 
-        :param file_path: Ruta del archivo desde el cual extraer el texto.
-        :return: Una lista de párrafos extraídos del archivo.
+        :param file_path: Path to the file from which to extract text.
+        :return: A list of paragraphs extracted from the file.
         """
         pass
 
     def extract_text(self, file_path):
         """
-        Método concreto, que se basa en la abstracción anterior, para extraer texto de un archivo dado,
-        con manejo de errores.
+        Concrete method, based on the above abstraction, to extract text from a given file with error handling.
 
-        :param file_path: Ruta del archivo desde el cual extraer el texto.
-        :return: Una lista de párrafos extraídos del archivo.
+        :param file_path: Path to the file from which to extract text.
+        :return: A list of paragraphs extracted from the file.
         """
         paragraphs = []
         try:
@@ -37,17 +36,17 @@ class TextExtractor(ABC):
     @staticmethod
     def clean_text(text):
         """
-        Método estático para limpiar el texto, reemplazando caracteres de nueva línea y de tabulación, por espacios.
+        Static method to clean text by replacing both newline and tab characters with spaces.
 
-        :param text: El texto a limpiar.
-        :return: Regresa texto limpio.
+        :param text: The text to clean.
+        :return: Cleaned text.
         """
         return text.replace('\n', ' ').replace('\t', ' ').strip()
 
 
 class PDFTextExtractor(TextExtractor):
     """
-    Clase para extraer texto de archivos PDF.
+    Class to extract text from PDF files.
     """
     def extract_text_impl(self, file_path):
         paragraphs = []
@@ -62,7 +61,7 @@ class PDFTextExtractor(TextExtractor):
 
 class DOCXTextExtractor(TextExtractor):
     """
-    Clase para extraer texto de archivos DOCX.
+    Class to extract text from DOCX files.
     """
     def extract_text_impl(self, file_path):
         document = Document(file_path)
@@ -72,7 +71,7 @@ class DOCXTextExtractor(TextExtractor):
 
 class TXTTextExtractor(TextExtractor):
     """
-    Clase para extraer texto de archivos TXT.
+    Class to extract text from TXT files.
     """
     def extract_text_impl(self, file_path):
         with open(file_path, 'r') as file:

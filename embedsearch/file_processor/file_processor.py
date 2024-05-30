@@ -4,21 +4,21 @@ from .extractor.text_extractor_factory import TextExtractorFactory
 
 class FileProcessor:
     """
-    Clase para procesar archivos y extraer texto de ellos.
+    Class to process files and extract text from them.
     """
     def __init__(self, path):
         """
-        Constructor de la clase FileProcessor, que recibe la ruta del directorio que contiene los archivos.
+        Constructor for the FileProcessor class, which takes the path to the directory containing the files.
 
-        :param path: Ruta del directorio que contiene los archivos a procesar.
+        :param path: Path to the directory containing the files to be processed.
         """
         self.path = path
 
     def extract_text_from_files(self):
         """
-        Extrae texto de todos los archivos en el directorio especificado.
+        Extracts text from all files in the specified directory.
 
-        :return: Una lista de los textos extraídos de los archivos.
+        :return: A list of texts extracted from the files.
         """
         texts = []
         for filename in os.listdir(self.path):
