@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 from embedsearch.embeddings.embedding_generator import EmbeddingGenerator
-from embedsearch.utils.utils import FileUtils
+from embedsearch.utils.utils import Utils
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -27,12 +27,12 @@ def main():
 
     # Check if the files directory exists
     print("Checking documents directory exists.")
-    FileUtils.check_files_path(files_path)
+    Utils.check_files_path(files_path)
     print("\nDocuments directory found.")
 
     # Process the files and extract text
     print("\nExtracting text...")
-    paragraphs = FileUtils.process_files(files_path)
+    paragraphs = Utils.process_files(files_path)
     print("\nText extracted.")
 
     # Create an instance of the embedding generator with the API key
@@ -42,14 +42,14 @@ def main():
 
     # Generate and save the embeddings in a FAISS index
     print("\nGenerating and saving embeddings...")
-    faiss_index = FileUtils.generate_and_save_embeddings(generator, paragraphs, faiss_index_path)
+    faiss_index = Utils.generate_and_save_embeddings(generator, paragraphs, faiss_index_path)
     print("\nEmbeddings saved succesfully to FAISS index.")
 
     print(f"\nFAISS index saved to {faiss_index_path}")
 
     # Perform the search query on the FAISS index
     print("\nSearching your query...")
-    results = FileUtils.search_query(query, generator, faiss_index, paragraphs, k)
+    results = Utils.search_query(query, generator, faiss_index, paragraphs, k)
     print("\nSearch completed.")
 
     # Format the search results into a pandas DataFrame

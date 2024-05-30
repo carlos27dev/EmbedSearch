@@ -4,7 +4,7 @@ from embedsearch.file_processor.file_processor import FileProcessor
 from embedsearch.faiss_index.faiss_index import FaissIndex
 
 
-class FileUtils:
+class Utils:
     @staticmethod
     def check_files_path(files_path):
         """
