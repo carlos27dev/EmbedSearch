@@ -1,49 +1,49 @@
 # EmbedSearch Project
 
-Este proyecto es una demostración de cómo extraer texto de archivos, generar embeddings usando Co:here, y realizar búsquedas semánticas usando un índice FAISS.
+This project is a demonstration of how to extract text from files, generate embeddings using Co:here, and perform semantic searches using a FAISS index.
 
-## Descripción
+## Description
 
-El proyecto permite a los usuarios cargar archivos (PDF, DOCX, TXT), extraer su contenido, generar embeddings para cada párrafo utilizando la API de Co:here y relizar consultas semánticas dentro del contenido utilizando FAISS.
+The project allows users to upload files (PDF, DOCX, TXT), extract their content, generate embeddings for each paragraph using the Co:here API, and perform semantic queries within the content using FAISS.
 
-## Instalación
+## Installation
 
-1. Clonar el repositorio:
+1. Clone the repository:
     ```sh
-    git clone https://github.com/carlos27dev/EmbedSearch
-    cd EmbeddingsProject
+   git clone https://github.com/carlos27dev/EmbedSearch
+   cd EmbeddingsProject
     ```
 
-2. Crear y activar un entorno virtual:
+2. Create and activate a virtual environment:
     ```sh
     python3 -m venv venv
     source venv/bin/activate
     ```
 
-3. Instalar las dependencias:
+3. Install the dependencies:
     ```sh
     pip install -r requirements.txt
     ```
 
-4. Configurar las variables de entorno:
-    - Crear un archivo `.env` en la raíz del proyecto con tu API key de Co:here.
+4. Install the dependencies:
+    - Create a .env file in the root of the project with your Co:here API key.
     ```env
-    COHERE_API_KEY=tu_api_key
+    COHERE_API_KEY=your_api_key
     ```
 
-## Uso
+## Usage
 
-1. Colocar los archivos que deseas procesar en el directorio `data/sample`.
-2. Ejecutar el script principal:
+1. Place the files you want to process in the data/sample directory.
+2. Run the main script:
     ```sh
     python main.py
     ```
-3. El programa te pedirá que ingreses tu consulta:
+3. The program will prompt you to enter your query:
    ```sh
     Please enter your query: (E.g.: How COVID affects this plan?):  
     ```
-4. Los resultados se mostrarán en la consola.
+4. The results will be displayed in the console.
 
-## Autor
+## Author
 
 - **Carlos Arriaga** - [carlos27dev](https://github.com/carlos27dev)
