@@ -1,4 +1,5 @@
 import os
+import textwrap
 import pandas as pd
 from dotenv import load_dotenv
 from embedsearch.embeddings.embedding_generator import EmbeddingGenerator
@@ -13,6 +14,7 @@ def main():
     """
     Main entry point for the program.
     """
+
     # Query to perform
     query = input("Please enter your query: (E.g.: How COVID affects this plan?): ")
 
@@ -26,31 +28,31 @@ def main():
     k = 5
 
     # Check if the files directory exists
-    print("Checking documents directory exists.")
+    print("\nChecking documents directory exists.")
     Utils.check_files_path(files_path)
-    print("\nDocuments directory found.")
+    print("Documents directory found.")
 
     # Process the files and extract text
     print("\nExtracting text...")
     paragraphs = Utils.process_files(files_path)
-    print("\nText extracted.")
+    print("Text extracted.")
 
     # Create an instance of the embedding generator with the API key
     print("\nGenerating an Embedding Engine...")
     generator = EmbeddingGenerator(api_key)
-    print("\nEmbedder generated.")
+    print("Embedder generated.")
 
     # Generate and save the embeddings in a FAISS index
     print("\nGenerating and saving embeddings...")
     faiss_index = Utils.generate_and_save_embeddings(generator, paragraphs, faiss_index_path)
-    print("\nEmbeddings saved succesfully to FAISS index.")
+    print("Embeddings saved succesfully to FAISS index.")
 
-    print(f"\nFAISS index saved to {faiss_index_path}")
+    print(f"FAISS index saved to {faiss_index_path}")
 
     # Perform the search query on the FAISS index
     print("\nSearching your query...")
     results = Utils.search_query(query, generator, faiss_index, paragraphs, k)
-    print("\nSearch completed.")
+    print("Search completed.")
 
     # Format the search results into a pandas DataFrame
     results_df = pd.DataFrame(results, columns=['Paragraph', 'Distance'])
@@ -58,8 +60,10 @@ def main():
     # Display the search results
     print("\nSearch results:")
     print(f"Query:'{query}'\nNearest neighbors:")
-    print(results_df)
-
+    for i, row in results_df.iterrows():
+        paragraph = textwrap.fill(row['Paragraph'], width=80)
+        print(f"\nParagraph:\n{paragraph}")
+        print(f"Distance: {row['Distance']}")
 
 if __name__ == '__main__':
     main()
